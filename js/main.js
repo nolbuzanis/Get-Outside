@@ -1,3 +1,23 @@
+// Once button is pressed, show the map and results
+
+function slide() {
+    var map = document.getElementById('map');
+    var page = document.getElementById('home');
+    map.classList.toggle('active');
+    home.classList.toggle('innactive');
+    search.classList.toggle('innactive');
+    back.classList.toggle('innactive');
+}
+
+document.getElementById('search').addEventListener('click', function(){
+    slide();
+    initMap();
+});
+
+document.getElementById('back').addEventListener('click', function() {
+    slide();
+});
+
 var userLocation;
 
 function getUserLocation() {
@@ -61,4 +81,5 @@ function initMap() {
 
         addMarker(userLocation);
 }
+
 
