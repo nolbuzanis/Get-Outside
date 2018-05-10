@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    position: fixed;
+    z-index: 5;
+    text-align: center;
+    margin: auto;
+    color: white;
+    width: 100%;
+    padding: 15px 0;
+    background: rgb(94, 201, 174);
+}
+
+div#map {
+    height: 100%;
+}
