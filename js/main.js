@@ -1,3 +1,7 @@
+var wanlessPark = {
+    lat: 43.7289649,
+    lng: -79.3919565
+};
 
 function initMap() {
     var location = {
@@ -12,6 +16,7 @@ function initMap() {
     };
     // Create the map
     var map = new google.maps.Map(document.getElementById('map'), options);
+    /*
     // Add marker
     var marker = new google.maps.Marker({
         position: location, 
@@ -25,5 +30,16 @@ function initMap() {
 
     marker.addListener('click', function(){
         infoWindow.open(map, marker);
-    });
+        });*/
+
+        function addMarker(coords) {
+            var marker = new google.maps.Marker({
+                position: coords, 
+                map: map,
+                icon: ''
+            });
+        }
+
+        addMarker(wanlessPark);
 }
+
