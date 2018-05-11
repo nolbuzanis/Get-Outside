@@ -3,6 +3,8 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', 'sans-serif';
+    overflow: hidden;
 }
 
 div#map {
@@ -13,9 +15,11 @@ div#map {
 h1 {
     text-align: center;
     margin: auto;
-    color: rgb(94, 201, 174);
+    color: #fff;
     width: 100%;
-    padding: 20px 0;
+    padding: 150px 0 20px;
+    font-size: 60px;
+    font-weight: 300;
 }
 
 button {
@@ -96,7 +100,7 @@ button#back:hover svg {
     position: absolute;
     width: 100%;
     height: 100vh;
-    background: white;
+    background: rgb(94, 201, 174);
     left: 0;
     transition: 0.5s ease;
 }
@@ -115,4 +119,38 @@ div.innactive {
 
 button.innactive {
     display: none;
+}
+
+.home p {
+    color: #fff;
+    font-size: 20px;
+    position: relative;
+    text-align: center;
+    font-weight: 300;
+    padding: 10px 0 0;
+}
+
+.home input#distance {
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    margin: 30px auto 0;
+    padding: 10px 5px;
+    color: rgb(94, 201, 174);
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0;
+    border: 0;
+}
+
+.home input#distance::placeholder {
+    color: rgba(0,0,0,0.5);
+}
+.home input#distance::-moz-placeholder {
+    color: rgba(0,0,0,0.5);
+}
+.home input#distance::-webkit-input-placeholder {
+    color: rgba(0,0,0,0.5);
 }
