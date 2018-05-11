@@ -1,3 +1,5 @@
+var distanceSpecified;
+
 // Slide to show the map and results, hides the main page
 function slide() {
     var map = document.getElementById('map');
@@ -17,6 +19,7 @@ function distanceValidation() {
         console.log('Specify a value greater than zero.');
     }
     else {
+        distanceSpecified = value;
         slide();
         initMap();
         console.log(value + ' km entered');
@@ -53,42 +56,23 @@ function getUserLocation() {
     }
 }
 
-var wanlessPark = {
-    lat: 43.7289649,
-    lng: -79.3919565
+var kingston = {
+    lat: 44.229898,
+    lng: -76.494751
 };
-var toronto = {
-    lat: 43.6532,
-    lng: -79.3832
-};
+
 
 function initMap() {
     
     // Map Options
     var options = {
         zoom: 15,
-        center: (userLocation) ? userLocation : toronto,
+        center: (userLocation) ? userLocation : kingston,
         mapTypeId: 'terrain'
     };
     
     // Create the map
     var map = new google.maps.Map(document.getElementById('map'), options);
-    
-    /*
-    // Add marker
-    var marker = new google.maps.Marker({
-        position: location, 
-        map: map,
-        icon: ''
-    });
-
-    var infoWindow = new google.maps.InfoWindow({
-        content: 'Currrent Location'
-    });
-
-    marker.addListener('click', function(){
-        infoWindow.open(map, marker);
-        });*/
 
         function addMarker(coords) {
             var marker = new google.maps.Marker({
@@ -96,9 +80,36 @@ function initMap() {
                 map: map,
                 icon: ''
             });
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: 'Enter Data'
+            });
+        
+            marker.addListener('click', function(){
+                infoWindow.open(map, marker);
+                });
         }
 
         addMarker(userLocation);
+
+        var request = {
+            location: userLocation,
+            radius: 1000 * distanceSpecified,
+            type: ['restaurant']
+        }
+
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+
+        function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                for (let i = 0; i < results.length; i++) {
+                    var place = results[i];
+                    addMarker(place.geometry.location);
+
+                }
+            }
+        }
+
+        
 }
-
-
