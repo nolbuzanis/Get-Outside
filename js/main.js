@@ -1,4 +1,5 @@
 var distanceSpecified;
+var userLocation;
 
 //window.localStorage = getUserLocation();
 
@@ -11,6 +12,9 @@ function distanceValidation() {
         console.log('Specify a value greater than zero.');
     }
     else {
+        if (userLocation) {
+            window.location.href = '/map.html';
+        } 
         console.log(value + ' km entered');
     }
 }
@@ -24,8 +28,6 @@ document.getElementById('distance').addEventListener('keypress', function(e) {
         distanceValidation();
     }
 });
-
-var userLocation;
 
 function getUserLocation() {
     if (navigator.geolocation) {
