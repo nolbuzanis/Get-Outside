@@ -105,22 +105,6 @@ button#back:hover svg {
     transition: 0.5s ease;
 }
 
-div.active {
-    width: 100%;
-    left: 0;
-    transition: 0.5s ease;
-}
-
-div.innactive {
-    width: 0;
-    transition: 0.5s ease;
-    left: -100%;
-}
-
-button.innactive {
-    display: none;
-}
-
 .home p {
     color: #fff;
     font-size: 20px;
