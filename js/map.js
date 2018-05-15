@@ -5,32 +5,44 @@ document.getElementById('back').addEventListener('click', function() {
 
 function initMap() {
 
+  var user = {
+    name: 'Current Location',
+    geometry: {
+      location: {}
+    }
+  };
+
     var userLocation = JSON.parse(window.localStorage.getItem('GPS'));
-    console.log(userLocation);
-    var user = new google.maps.LatLng(userLocation.lat, userLocation.lng);
-    console.log(user);
+
+    user.geometry.location = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+
     var distanceSpecified = (window.localStorage.getItem('radius')) ? JSON.parse(window.localStorage.getItem('radius')) : 10;
-    console.log(distanceSpecified);
+
+    // Default if there is an error in finding the user's location
+    var kingston = {
+      lat: 44.229898,
+      lng: -76.494751
+  };
 
     // Map Options
     var options = {
-        zoom: 15,
-        center: (user) ? user : kingston,
+        zoom: 13,
+        center: (userLocation) ? userLocation : kingston,
         mapTypeId: 'terrain'
     };
     
     // Create the map
     var map = new google.maps.Map(document.getElementById('map'), options);
 
-        function addMarker(coords) {
+        function addMarker(target) {
             var marker = new google.maps.Marker({
-                position: coords, 
+                position: target.geometry.location, 
                 map: map,
                 icon: ''
             });
 
             var infoWindow = new google.maps.InfoWindow({
-                content: 'Enter Data'
+                content: target.name
             });
         
             marker.addListener('click', function(){
@@ -38,10 +50,10 @@ function initMap() {
                 });
         }
 
-        addMarker(userLocation);
-        /*
+        addMarker(user);
+        
         var request = {
-            location: user,
+            location: user.geometry.location,
             radius: 1000 * distanceSpecified,
             type: ['']
         }
@@ -53,12 +65,11 @@ function initMap() {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
                 for (let i = 0; i < results.length; i++) {
                     var place = results[i];
-                    console.log(results[i].lat);
-                   addMarker(results[i].geometry.location);
-
+                    //console.log(results[i]);
+                   addMarker(results[i]);
                 }
             }
         }
 
-        */
+        
 }

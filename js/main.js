@@ -45,8 +45,3 @@ function getUserLocation() {
     }
 }
 
-var kingston = {
-    lat: 44.229898,
-    lng: -76.494751
-};
-
