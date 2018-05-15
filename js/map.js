@@ -2,34 +2,12 @@ document.getElementById('back').addEventListener('click', function() {
   console.log('button pressed');
 });
 
-var userLocation;
-
-function getUserLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            userLocation = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            console.log(userLocation);
-        });
-    } else {
-        console.log("User location not avaliable");
-    }
-}
-
-var kingston = {
-    lat: 44.229898,
-    lng: -76.494751
-};
-
-
 function initMap() {
 
-    getUserLocation();
-
+    var userLocation = JSON.parse(window.localStorage.getItem('GPS'));
+    console.log(userLocation);
     var user = new google.maps.LatLng(userLocation.lat, userLocation.lng);
-    //console.log(user);
+    console.log(user);
 
     // Map Options
     var options = {
@@ -58,13 +36,13 @@ function initMap() {
         }
 
         addMarker(userLocation);
-
+        /*
         var request = {
             location: user,
             radius: 1000 * distanceSpecified,
             type: ['']
         }
-
+        
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, callback);
 
@@ -79,5 +57,5 @@ function initMap() {
             }
         }
 
-        
+        */
 }

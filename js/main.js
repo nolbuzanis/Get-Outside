@@ -1,5 +1,7 @@
 var distanceSpecified;
 
+//window.localStorage = getUserLocation();
+
 // Check to see if value is valid, a number, and greater than 0
 function distanceValidation() {
     var value = document.getElementById('distance').value;
@@ -22,3 +24,26 @@ document.getElementById('distance').addEventListener('keypress', function(e) {
         distanceValidation();
     }
 });
+
+var userLocation;
+
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            window.localStorage.setItem('GPS', JSON.stringify(userLocation));
+            console.log(userLocation);
+        });
+    } else {
+        console.log("User location not avaliable");
+    }
+}
+
+var kingston = {
+    lat: 44.229898,
+    lng: -76.494751
+};
+
