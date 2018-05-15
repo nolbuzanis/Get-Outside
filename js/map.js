@@ -9,6 +9,8 @@ function initMap() {
     console.log(userLocation);
     var user = new google.maps.LatLng(userLocation.lat, userLocation.lng);
     console.log(user);
+    var distanceSpecified = (window.localStorage.getItem('radius')) ? JSON.parse(window.localStorage.getItem('radius')) : 10;
+    console.log(distanceSpecified);
 
     // Map Options
     var options = {

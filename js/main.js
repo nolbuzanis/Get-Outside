@@ -14,6 +14,7 @@ function distanceValidation() {
     else {
         if (userLocation) {
             window.location.href = '/map.html';
+            window.localStorage.setItem('radius', JSON.stringify(value));
         } 
         console.log(value + ' km entered');
     }
